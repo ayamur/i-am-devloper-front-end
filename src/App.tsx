@@ -1,5 +1,5 @@
 // npm modules 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -8,6 +8,7 @@ import Login from './pages/Login/Login'
 import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
+import Posts from './pages/Posts/Posts'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -15,17 +16,34 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // services
 import * as authService from './services/authService'
+import * as profileService from './services/profileService'
+import * as postService from './services/postService'
 
 // stylesheets
 import './App.css'
 
 // types
-import { User } from './types/models'
+import { User, Profile, Post } from './types/models'
+import { PostManagerFormData } from './types/forms'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
-  
+
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [profiles, setProfiles] = useState<Profile[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
+
+  useEffect((): void => {
+    const fetchPosts = async (): Promise<void> => {
+      try {
+        const postData: Post[] = await postService.getAllPosts()
+        setPosts(postData)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    if (user) fetchPosts()
+  }, [user])
 
   const handleLogout = (): void => {
     authService.logout()
@@ -35,6 +53,18 @@ function App(): JSX.Element {
 
   const handleAuthEvt = (): void => {
     setUser(authService.getUser())
+  }
+
+  const handlePost = async (formData: PostManagerFormData): Promise<void> => {
+    try {
+      const updatedPost = await postService.updatePost(formData)
+      setPosts(posts.map((post) => (
+        post.id === updatedPost.id ? updatedPost : post
+      )))
+    } catch (error) {
+      console.log(error);
+
+    }
   }
 
   return (
@@ -55,6 +85,14 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <Profiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/posts"
+          element={
+            <ProtectedRoute user={user}>
+              <Posts posts={posts} handlePost={handlePost} />
             </ProtectedRoute>
           }
         />

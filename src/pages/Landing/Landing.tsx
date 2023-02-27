@@ -1,4 +1,5 @@
 // stylesheets
+// import logo from '../../assets/logo.svg'
 import styles from './Landing.module.css'
 
 // types
@@ -13,7 +14,8 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <main className={styles.container}>
-      <h1>hello, {user ? user.name : 'friend'}</h1>
+      <h1>PlaceHolder <br/> Words</h1>
+      {/* <img src={logo} alt="A meow meow bean" /> */}
     </main>
   )
 }

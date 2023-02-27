@@ -1,6 +1,9 @@
 /* ---------==== custom forms ====--------- */
 
-
+export interface PostManagerFormData {
+  postId: number;
+  profileId: number;
+}
 
 /* ---------===== auth forms =====--------- */
 
