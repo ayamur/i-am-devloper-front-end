@@ -1,9 +1,9 @@
 /* ---------==== custom forms ====--------- */
 
-export interface PostManagerFormData {
-  postId: number;
-  profileId: number;
-}
+// export interface PostManagerFormData {
+//   postId: number;
+//   profileId: number;
+// }
 
 /* ---------===== auth forms =====--------- */
 
@@ -27,4 +27,9 @@ export interface ChangePasswordFormData {
 
 export interface PhotoFormData {
   photo: File | null;
+}
+
+export interface CreatePostForm {
+  image: string;
+  caption: string;
 }
