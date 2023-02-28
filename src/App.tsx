@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Posts from './pages/Posts/Posts'
+import CreatePost from './pages/CreatePost/CreatePost'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -24,7 +25,9 @@ import './App.css'
 
 // types
 import { User, Profile, Post } from './types/models'
-import { PostManagerFormData } from './types/forms'
+// import { PostManagerFormData } from './types/forms'
+import { CreatePostForm } from './types/forms'
+import { PromiseProvider } from 'mongoose'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
@@ -55,17 +58,23 @@ function App(): JSX.Element {
     setUser(authService.getUser())
   }
 
-  const handlePost = async (formData: PostManagerFormData): Promise<void> => {
-    try {
-      const updatedPost = await postService.updatePost(formData)
-      setPosts(posts.map((post) => (
-        post.id === updatedPost.id ? updatedPost : post
-      )))
-    } catch (error) {
-      console.log(error);
-
-    }
+  const handleCreatePost = async (postData: CreatePostForm): Promise<void>=>{
+    const makePost = await postService.createPost(postData)
+    setPosts([makePost, ...posts])
+    navigate('/posts')
   }
+
+  // const handlePost = async (formData: PostManagerFormData): Promise<void> => {
+  //   try {
+  //     const updatedPost = await postService.updatePost(formData)
+  //     setPosts(posts.map((post) => (
+  //       post.id === updatedPost.id ? updatedPost : post
+  //     )))
+  //   } catch (error) {
+  //     console.log(error);
+
+  //   }
+  // }
 
   return (
     <>
@@ -92,9 +101,17 @@ function App(): JSX.Element {
           path="/posts"
           element={
             <ProtectedRoute user={user}>
-              <Posts posts={posts} handlePost={handlePost} />
+              <Posts posts={posts}/>
             </ProtectedRoute>
           }
+        />
+        <Route
+        path="/postpost"
+        element={
+          <ProtectedRoute user={user}>
+            <CreatePost handleCreatePost={handleCreatePost} />
+          </ProtectedRoute>
+        }
         />
         <Route
           path="/change-password"
