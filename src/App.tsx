@@ -119,7 +119,7 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        <Route path={`/posts/$id`}
+        <Route path={`/posts/edit`}
         element={
           <ProtectedRoute user={user}>
             <UpdatePost handleUpdatePost={handleUpdatePost} />

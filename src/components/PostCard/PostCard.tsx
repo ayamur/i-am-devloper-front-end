@@ -30,7 +30,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
         <h1>Notes from the devloper!: </h1><h1 id='devcap'>{post.caption}</h1>
         {post.profileId === user?.id && (
           <>
-            <Link state={{ post }} to={`/${post.id}`}>
+            <Link state={{ post }} to='/posts/edit'>
               <button>
                 Edit Your Oops!
               </button>
