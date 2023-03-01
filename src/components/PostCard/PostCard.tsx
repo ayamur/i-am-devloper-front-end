@@ -21,10 +21,10 @@ const PostCard = (props: PostCardProps): JSX.Element => {
   return (
     <>
       <div className='postcard' key={post.id}>
+        <h4 className='cardfont'>Notes from the devloper!: </h4><h2 id='devcap' className='cardfont'>"{post.caption}"</h2>
         {post.image && (
           <img src={post.image} alt={post.caption} />
         )}
-        <h1>Notes from the devloper!: </h1><h1 id='devcap'>{post.caption}</h1>
         {post.profileId === user?.id && (
           <>
             <Link state={{ post }} to='/posts/edit'>

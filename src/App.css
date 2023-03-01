@@ -32,3 +32,10 @@ width: 300px;
   align-content: center;
   justify-content: center;
 }
+
+.postcard{
+  margin: 50px;
+  padding:100px;
+  border: solid thin honeydew;;
+}
+
