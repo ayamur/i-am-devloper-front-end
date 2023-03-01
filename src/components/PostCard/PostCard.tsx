@@ -27,14 +27,16 @@ const PostCard = (props: PostCardProps): JSX.Element => {
           <img src={post.image} alt={post.caption} />
         )}
         <h1>Notes from the devloper!: </h1><h1 id='devcap'>{post.caption}</h1>
-        <Link state={{ post }} to={`/posts/${post.id}/update`}>
-          {/* to={`:id`} */}
-          <button>
-            Edit Your Oops!
-          </button>
-        </Link>
         {post.profileId === user?.id && (
           <>
+            {/* localhost */}
+            {/* <Link state={{ post }} to={`/posts/${post.id}/update`}> */}
+            <Link state={{ post }} to={`:id`}>
+
+              <button>
+                Edit Your Oops!
+              </button>
+            </Link>
             <button onClick={() => handleDeletePost(post)}>
               This Never Happened! Delete The Proof!
             </button>

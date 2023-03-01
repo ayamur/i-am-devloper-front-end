@@ -75,10 +75,10 @@ function App(): JSX.Element {
 
   const handleDeletePost = async (
     postData: DeletePostForm): Promise<void> => {
-      await postService.deletePost(postData)
-      setPosts(posts.filter(p => p.id !== postData.id))
-      navigate('/posts')
-    }
+    await postService.deletePost(postData)
+    setPosts(posts.filter(p => p.id !== postData.id))
+    navigate('/posts')
+  }
 
   return (
     <>
@@ -105,9 +105,9 @@ function App(): JSX.Element {
           path="/posts"
           element={
             <ProtectedRoute user={user}>
-              <Posts posts={posts} user={user} 
-              // profile={profile} 
-              handleDeletePost={handleDeletePost} />
+              <Posts posts={posts} user={user}
+                // profile={profile} 
+                handleDeletePost={handleDeletePost} />
             </ProtectedRoute>
           }
         />
@@ -119,14 +119,13 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        <Route
-          path={`/posts/:id/update`}
-          //{:id}
-          element={
-            <ProtectedRoute user={user}>
-              <UpdatePost handleUpdatePost={handleUpdatePost} />
-            </ProtectedRoute>
-          }
+        <Route path={`:id`}
+        /* Route path={`/posts/:id/update`} */
+        element={
+          <ProtectedRoute user={user}>
+            <UpdatePost handleUpdatePost={handleUpdatePost} />
+          </ProtectedRoute>
+        }
         />
         {/* <Route
           path="/delete"
