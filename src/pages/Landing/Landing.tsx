@@ -17,9 +17,9 @@ const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
   return (
-    <main className={styles.container}>
-      <h1>Welcome Software Engineers, Creators, Coders, Programmers and Tech Language Translators!<br /> WE ARE DEVLOPERS!</h1>
-      <img src={logo} alt='facepalm' />
+    <main className='landtextlogo'>
+      <h1>Welcome Software Engineers, Creators, Coders, Programmers and Tech Language Translators!</h1><br /> <h1>WE ARE DEVLOPERS!!!</h1>
+      <img src={logo} alt='facepalm' id='landlogo' />
     </main>
   )
 }
