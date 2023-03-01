@@ -77,7 +77,7 @@ function App(): JSX.Element {
     postData: DeletePostForm): Promise<void> => {
     await postService.deletePost(postData)
     setPosts(posts.filter(p => p.id !== postData.id))
-    navigate('/posts')
+    navigate('/${:id}/update')
   }
 
   return (
