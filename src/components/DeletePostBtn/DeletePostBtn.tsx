@@ -1,5 +1,7 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router'
 import * as tokenService from '../../services/tokenService'
+
+
 
 type DeletePostBtnProps = {
   postId: string,
@@ -7,8 +9,10 @@ type DeletePostBtnProps = {
   userId: string
 }
 
+
+
 const DeletePostBtn: React.FC<DeletePostBtnProps> = ({ userId, postId }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const deletePost = async () => {
     try {
@@ -19,6 +23,7 @@ const DeletePostBtn: React.FC<DeletePostBtnProps> = ({ userId, postId }) => {
           'Authorization': `Bearer ${tokenService.getToken()}`,
         },
       })
+
       const delResponse = await response.json()
       if (delResponse.message === 'Goodbye to That Post!') {
         navigate('/posts')
@@ -35,4 +40,6 @@ const DeletePostBtn: React.FC<DeletePostBtnProps> = ({ userId, postId }) => {
   )
 }
 
-export default DeletePostBtn;
+
+
+export default DeletePostBtn

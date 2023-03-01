@@ -3,7 +3,7 @@ import * as tokenService from './tokenService'
 import { addPhoto as addProfilePhoto } from './profileService'
 
 // types
-import { 
+import {
   ChangePasswordFormData,
   LoginFormData,
   SignupFormData,
@@ -11,10 +11,14 @@ import {
 } from '../types/forms'
 import { User } from '../types/models'
 
+
+
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/auth`
 
+
+
 async function signup(
-  formData: SignupFormData, 
+  formData: SignupFormData,
   photoFormData: PhotoFormData,
 ): Promise<void> {
   try {
@@ -23,6 +27,7 @@ async function signup(
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     })
+
     const json = await res.json()
     if (json.err) {
       throw new Error(json.err)
@@ -55,6 +60,7 @@ async function login(formData: LoginFormData): Promise<void> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData),
     })
+
     const json = await res.json()
     if (json.token) {
       tokenService.setToken(json.token)
@@ -77,6 +83,7 @@ async function changePassword(formData: ChangePasswordFormData): Promise<void> {
       },
       body: JSON.stringify(formData),
     })
+
     const json = await res.json()
     if (json.token) {
       tokenService.removeToken()
@@ -89,5 +96,7 @@ async function changePassword(formData: ChangePasswordFormData): Promise<void> {
     throw error
   }
 }
+
+
 
 export { signup, getUser, logout, login, changePassword }

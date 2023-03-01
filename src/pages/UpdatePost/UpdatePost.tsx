@@ -1,33 +1,45 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router";
-import { Post } from "../../types/models";
-import { UpdatePostForm } from "../../types/forms";
+//npm packages
+import { useState } from 'react'
+import { useLocation } from 'react-router'
+
+//types
+import { Post } from '../../types/models'
+import { UpdatePostForm } from '../../types/forms'
+
+
 
 interface UpdatePostProps {
   handleUpdatePost: (post: Post) => void;
 }
 
-const UpdatePost=(props: UpdatePostProps): JSX.Element => {
+
+
+const UpdatePost = (props: UpdatePostProps): JSX.Element => {
   const location = useLocation()
-  const {post}=location.state
-  const {handleUpdatePost}=props
+
+  const { post } = location.state
+
+  const { handleUpdatePost } = props
+
   const [form, setForm] = useState<UpdatePostForm>({
     image: post.image, caption: post.caption
   })
+
   const handlePostModify = (evt: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({
       ...form,
       [evt.target.name]: evt.target.value
     })
   }
+
   const handlePostSub = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
-    const updatedPost = {...post, ...form}
-    await handleUpdatePost(updatedPost) 
-    }
+    const updatedPost = { ...post, ...form }
+    await handleUpdatePost(updatedPost)
+  }
 
   return (
-    <form autoComplete="off" onSubmit={handlePostSub}>
+    <form autoComplete='off' onSubmit={handlePostSub}>
       <label>image
         <input type='text' value={form.image} onChange={handlePostModify} name='image'></input>
       </label>
@@ -38,5 +50,7 @@ const UpdatePost=(props: UpdatePostProps): JSX.Element => {
     </form>
   )
 }
+
+
 
 export default UpdatePost

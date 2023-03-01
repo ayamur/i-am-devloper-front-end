@@ -13,17 +13,22 @@ import { AuthFormProps } from '../../types/props'
 import { SignupFormData, PhotoFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
+
+
 const SignupForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const { updateMessage, handleAuthEvt } = props
+
   const navigate = useNavigate()
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+
   const [formData, setFormData] = useState<SignupFormData>({
     name: '',
     email: '',
     password: '',
     passwordConf: '',
   })
+
   const [photoData, setPhotoData] = useState<PhotoFormData>({
     photo: null
   })
@@ -39,7 +44,7 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
 
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
-    if(isSubmitted) return
+    if (isSubmitted) return
     try {
       setIsSubmitted(true)
       await authService.signup(formData, photoData)
@@ -60,80 +65,82 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
 
   return (
     <form
-      autoComplete="off"
+      autoComplete='off'
       onSubmit={handleSubmit}
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="name" className={styles.label}>Name</label>
+        <label htmlFor='name' className={styles.label}>Name</label>
         <input
-          type="text"
-          id="name"
+          type='text'
+          id='name'
           value={name}
-          name="name"
+          name='name'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>
+        <label htmlFor='email' className={styles.label}>
           Email
         </label>
         <input
-          type="text"
-          id="email"
+          type='text'
+          id='email'
           value={email}
-          name="email"
+          name='email'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>
+        <label htmlFor='password' className={styles.label}>
           Password
         </label>
         <input
-          type="password"
-          id="password"
+          type='password'
+          id='password'
           value={password}
-          name="password"
+          name='password'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="confirm" className={styles.label}>
+        <label htmlFor='confirm' className={styles.label}>
           Confirm Password
         </label>
         <input
-          type="password"
-          id="confirm"
+          type='password'
+          id='confirm'
           value={passwordConf}
-          name="passwordConf"
+          name='passwordConf'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="photo-upload" className={styles.label}>
+        <label htmlFor='photo-upload' className={styles.label}>
           Upload Photo
         </label>
         <input
-          type="file"
-          id="photo-upload"
-          name="photo"
+          type='file'
+          id='photo-upload'
+          name='photo'
           onChange={handleChangePhoto}
         />
       </div>
       <div className={styles.inputContainer}>
-        <button 
-          disabled={isFormInvalid() || isSubmitted} 
+        <button
+          disabled={isFormInvalid() || isSubmitted}
           className={styles.button}
         >
-          {!isSubmitted ? "Sign Up" : "🚀 Sending..."}
+          {!isSubmitted ? 'Sign Up' : '🚀 Sending...'}
         </button>
-        <Link to="/">
+        <Link to='/'>
           <button>Cancel</button>
         </Link>
       </div>
     </form>
   )
 }
+
+
 
 export default SignupForm

@@ -4,7 +4,11 @@ import * as tokenService from './tokenService'
 // types
 import { Profile } from '../types/models'
 
+
+
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/profiles`
+
+
 
 async function getAllProfiles(): Promise<Profile[]> {
   try {
@@ -18,7 +22,7 @@ async function getAllProfiles(): Promise<Profile[]> {
 }
 
 async function addPhoto(
-  photoData: FormData, 
+  photoData: FormData,
   profileId: number
 ): Promise<string> {
   try {
@@ -34,5 +38,7 @@ async function addPhoto(
     throw error
   }
 }
+
+
 
 export { getAllProfiles, addPhoto }

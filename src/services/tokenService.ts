@@ -4,9 +4,13 @@ import jwt_decode, { JwtPayload } from 'jwt-decode'
 // types
 import { User } from '../types/models'
 
+
+
 interface Payload extends JwtPayload {
   user: User
 }
+
+
 
 function setToken(token: string): void {
   localStorage.setItem('token', token)
@@ -34,5 +38,7 @@ function getUserFromToken(): User | null {
 function removeToken(): void {
   localStorage.removeItem('token')
 }
+
+
 
 export { setToken, getToken, getUserFromToken, removeToken }

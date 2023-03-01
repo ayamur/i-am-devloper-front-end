@@ -2,10 +2,14 @@
 import * as tokenService from './tokenService'
 
 // types
-import { Post } from '../types/models' 
+import { Post } from '../types/models'
 import { CreatePostForm, UpdatePostForm, DeletePostForm } from '../types/forms'
 
+
+
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/posts`
+
+
 
 async function getAllPosts(): Promise<Post[]> {
   try {
@@ -27,10 +31,10 @@ async function createPost(postData: CreatePostForm): Promise<Post> {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(postData)
-    });
+    })
     return await response.json() as Post
   } catch (error) {
-    throw (error);
+    throw (error)
   }
 }
 
@@ -43,10 +47,10 @@ async function updatePost(postData: Post): Promise<Post> {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(postData)
-    });
+    })
     return await response.json() as Post
   } catch (error) {
-    throw (error);
+    throw (error)
   }
 }
 
@@ -59,10 +63,10 @@ async function deletePost(postData: DeletePostForm): Promise<Post> {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(postData)
-    });
+    })
     return await response.json()
   } catch (error) {
-    throw (error);
+    throw (error)
   }
 }
 

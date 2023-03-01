@@ -1,8 +1,8 @@
 /* ---------===== custom props ====--------- */
 
-
-
 /* ---------===== auth models =====--------- */
+
+
 
 interface Profile {
   name: string;
@@ -33,4 +33,6 @@ interface Post {
   updatedAt: string;
 }
 
-export type { Profile, User, Post };
+
+
+export type { Profile, User, Post }

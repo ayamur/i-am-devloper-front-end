@@ -7,10 +7,13 @@ import SignupForm from '../../components/SignupForm/SignupForm'
 // stylesheets
 import styles from './Signup.module.css'
 
-// types
+
+
 interface SignupProps {
   handleAuthEvt: () => void;
 }
+
+
 
 const Signup = (props: SignupProps): JSX.Element => {
   const [message, setMessage] = useState('')
@@ -25,5 +28,7 @@ const Signup = (props: SignupProps): JSX.Element => {
     </main>
   )
 }
+
+
 
 export default Signup

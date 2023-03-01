@@ -26,15 +26,19 @@ import './App.css'
 
 // types
 import { User, Profile, Post } from './types/models'
-import { CreatePostForm, PostDataType, DeletePostForm } from './types/forms'
 import { PromiseProvider } from 'mongoose'
+import { CreatePostForm, PostDataType, DeletePostForm } from './types/forms'
 import DeletePostBtn from './components/DeletePostBtn/DeletePostBtn'
+
+
 
 function App(): JSX.Element {
   const navigate = useNavigate()
 
   const [user, setUser] = useState<User | null>(authService.getUser())
+
   const [profile, setProfile] = useState<Profile[]>([])
+
   const [posts, setPosts] = useState<Post[]>([])
 
   useEffect((): void => {
@@ -60,18 +64,19 @@ function App(): JSX.Element {
   }
 
   const handleCreatePost = async (postData: CreatePostForm): Promise<void> => {
+
     const makePost = await postService.createPost(postData)
     setPosts([makePost, ...posts])
     navigate('/posts')
   }
 
   const handleUpdatePost = async (postData: Post): Promise<void> => {
-    const updatedPost = await postService.updatePost(postData);
+    const updatedPost = await postService.updatePost(postData)
     setPosts((prevPosts: Post[]) =>
       prevPosts.map((p: Post) => (postData.id === p.id ? updatedPost : p))
-    );
+    )
     navigate('/posts')
-  };
+  }
 
   const handleDeletePost = async (
     postData: DeletePostForm): Promise<void> => {
@@ -84,17 +89,17 @@ function App(): JSX.Element {
     <>
       <NavBar user={user} handleLogout={handleLogout} />
       <Routes>
-        <Route path="/" element={<Landing user={user} />} />
+        <Route path='/' element={<Landing user={user} />} />
         <Route
-          path="/signup"
+          path='/signup'
           element={<Signup handleAuthEvt={handleAuthEvt} />}
         />
         <Route
-          path="/login"
+          path='/login'
           element={<Login handleAuthEvt={handleAuthEvt} />}
         />
         <Route
-          path="/profiles"
+          path='/profiles'
           element={
             <ProtectedRoute user={user}>
               <Profiles />
@@ -102,17 +107,16 @@ function App(): JSX.Element {
           }
         />
         <Route
-          path="/posts"
+          path='/posts'
           element={
             <ProtectedRoute user={user}>
               <Posts posts={posts} user={user}
-                // profile={profile} 
                 handleDeletePost={handleDeletePost} />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/postpost"
+          path='/postpost'
           element={
             <ProtectedRoute user={user}>
               <CreatePost handleCreatePost={handleCreatePost} />
@@ -120,14 +124,14 @@ function App(): JSX.Element {
           }
         />
         <Route path={`/posts/edit`}
-        element={
-          <ProtectedRoute user={user}>
-            <UpdatePost handleUpdatePost={handleUpdatePost} />
-          </ProtectedRoute>
-        }
+          element={
+            <ProtectedRoute user={user}>
+              <UpdatePost handleUpdatePost={handleUpdatePost} />
+            </ProtectedRoute>
+          }
         />
         <Route
-          path="/change-password"
+          path='/change-password'
           element={
             <ProtectedRoute user={user}>
               <ChangePassword handleAuthEvt={handleAuthEvt} />
@@ -137,6 +141,8 @@ function App(): JSX.Element {
       </Routes>
     </>
   )
-};
+}
+
+
 
 export default App

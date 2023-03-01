@@ -13,8 +13,10 @@ import { AuthFormProps } from '../../types/props'
 import { LoginFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
+
+
 const LoginForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const { updateMessage, handleAuthEvt } = props
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<LoginFormData>({
@@ -47,27 +49,27 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
 
   return (
     <form
-      autoComplete="off"
+      autoComplete='off'
       onSubmit={handleSubmit}
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="email" className={styles.label}>Email</label>
+        <label htmlFor='email' className={styles.label}>Email</label>
         <input
-          type="text"
-          id="email"
+          type='text'
+          id='email'
           value={formData.email}
-          name="email"
+          name='email'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>Password</label>
+        <label htmlFor='password' className={styles.label}>Password</label>
         <input
-          type="password"
-          id="password"
+          type='password'
+          id='password'
           value={formData.password}
-          name="password"
+          name='password'
           onChange={handleChange}
         />
       </div>
@@ -75,12 +77,14 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
         <button disabled={isFormInvalid()} className={styles.button}>
           Log In
         </button>
-        <Link to="/posts">
+        <Link to='/posts'>
           <button>Cancel</button>
         </Link>
       </div>
     </form>
   )
 }
+
+
 
 export default LoginForm

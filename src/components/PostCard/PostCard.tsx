@@ -1,22 +1,19 @@
+//npm modules 
 import { Link } from 'react-router-dom'
-import divideline from '../../assets/divideline.png'
-
-// assets
-
-// components
-import { DeletePostForm } from '../../types/forms';
 
 //type
 import { Post, User } from '../../types/models'
+import { DeletePostForm } from '../../types/forms'
 
 
 
 interface PostCardProps {
   post: Post;
-  // profile: Profile | null;
   user: User | null;
   handleDeletePost: (postData: DeletePostForm) => void;
 }
+
+
 
 const PostCard = (props: PostCardProps): JSX.Element => {
   const { post, user, handleDeletePost } = props
@@ -38,7 +35,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
             <button onClick={() => handleDeletePost(post)}>
               This Never Happened! Delete The Proof!
             </button>
-            <img src={divideline} alt='decorative dividing line' id='postdivide' />
+            <hr />
           </>
         )
         }
@@ -50,3 +47,15 @@ const PostCard = (props: PostCardProps): JSX.Element => {
 
 
 export default PostCard
+
+
+
+
+
+
+
+
+
+
+// icebox asset
+// import divideline from '../../assets/divideline.png'

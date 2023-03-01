@@ -7,10 +7,13 @@ import LoginForm from '../../components/LoginForm/LoginForm'
 // stylesheets
 import styles from './Login.module.css'
 
-// types
+
+
 interface LoginPageProps {
   handleAuthEvt: () => void;
-} 
+}
+
+
 
 const LoginPage = (props: LoginPageProps): JSX.Element => {
   const [message, setMessage] = useState('')
@@ -25,5 +28,7 @@ const LoginPage = (props: LoginPageProps): JSX.Element => {
     </main>
   )
 }
+
+
 
 export default LoginPage

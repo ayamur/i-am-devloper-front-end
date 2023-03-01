@@ -13,8 +13,11 @@ import { AuthFormProps } from '../../types/props'
 import { ChangePasswordFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
+
+
 const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
-  const {updateMessage, handleAuthEvt} = props
+  const { updateMessage, handleAuthEvt } = props
+
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<ChangePasswordFormData>({
@@ -48,43 +51,43 @@ const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
 
   return (
     <form
-      autoComplete="off"
+      autoComplete='off'
       onSubmit={handleSubmit}
       className={styles.container}
     >
       <div className={styles.inputContainer}>
-        <label htmlFor="password" className={styles.label}>
+        <label htmlFor='password' className={styles.label}>
           Current Password
         </label>
         <input
-          type="password"
-          id="oldPassword"
+          type='password'
+          id='oldPassword'
           value={oldPassword}
-          name="oldPassword"
+          name='oldPassword'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="newPassword" className={styles.label}>
+        <label htmlFor='newPassword' className={styles.label}>
           New Password
         </label>
         <input
-          type="password"
-          id="newPassword"
+          type='password'
+          id='newPassword'
           value={newPassword}
-          name="newPassword"
+          name='newPassword'
           onChange={handleChange}
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="newPasswordConf" className={styles.label}>
+        <label htmlFor='newPasswordConf' className={styles.label}>
           Confirm New Password
         </label>
         <input
-          type="password"
-          id="newPasswordConf"
+          type='password'
+          id='newPasswordConf'
           value={newPasswordConf}
-          name="newPasswordConf"
+          name='newPasswordConf'
           onChange={handleChange}
         />
       </div>
@@ -92,12 +95,14 @@ const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
         <button disabled={isFormInvalid()} className={styles.button}>
           Change Password
         </button>
-        <Link to="/posts">
+        <Link to='/posts'>
           <button>Cancel</button>
         </Link>
       </div>
     </form>
   )
 }
+
+
 
 export default ChangePasswordForm
