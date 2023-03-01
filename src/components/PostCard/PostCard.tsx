@@ -32,7 +32,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
           <>
             {/* localhost */}
             {/* <Link state={{ post }} to={`/posts/${post.id}/update`}> */}
-            <Link state={{ post }} to={`/:id`}>
+            <Link state={{ post }} to={`/:id/update`}>
               <button>
                 Edit Your Oops!
               </button>
