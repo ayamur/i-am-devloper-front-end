@@ -70,14 +70,14 @@ function App(): JSX.Element {
     setPosts((prevPosts: Post[]) =>
       prevPosts.map((p: Post) => (postData.id === p.id ? updatedPost : p))
     );
-    navigate('/posts');
+    navigate('/${:id}/update');
   };
 
   const handleDeletePost = async (
     postData: DeletePostForm): Promise<void> => {
     await postService.deletePost(postData)
     setPosts(posts.filter(p => p.id !== postData.id))
-    navigate('/${:id}/update')
+    navigate('/posts')
   }
 
   return (
