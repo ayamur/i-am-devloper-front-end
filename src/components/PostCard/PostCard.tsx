@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import divideline from '../../assets/divideline.png'
 
 // assets
 
@@ -31,8 +32,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
           <>
             {/* localhost */}
             {/* <Link state={{ post }} to={`/posts/${post.id}/update`}> */}
-            <Link state={{ post }} to={`:id`}>
-
+            <Link state={{ post }} to={`/$:id/update`}>
               <button>
                 Edit Your Oops!
               </button>
@@ -40,7 +40,7 @@ const PostCard = (props: PostCardProps): JSX.Element => {
             <button onClick={() => handleDeletePost(post)}>
               This Never Happened! Delete The Proof!
             </button>
-            <img src='src/assets/divideline.png' alt='decorative dividing line' id='postdivide' />
+            <img src={divideline} alt='decorative dividing line' id='postdivide' />
           </>
         )
         }

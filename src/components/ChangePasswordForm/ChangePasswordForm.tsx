@@ -33,7 +33,7 @@ const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
     try {
       await authService.changePassword(formData)
       handleAuthEvt()
-      navigate('/')
+      navigate('/posts')
     } catch (err) {
       console.log(err)
       handleErrMsg(err, updateMessage)
@@ -92,7 +92,7 @@ const ChangePasswordForm = (props: AuthFormProps): JSX.Element => {
         <button disabled={isFormInvalid()} className={styles.button}>
           Change Password
         </button>
-        <Link to="/">
+        <Link to="/posts">
           <button>Cancel</button>
         </Link>
       </div>

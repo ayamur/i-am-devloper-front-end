@@ -32,7 +32,7 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
     try {
       await authService.login(formData)
       handleAuthEvt()
-      navigate('/')
+      navigate('/posts')
     } catch (err) {
       console.log(err)
       handleErrMsg(err, updateMessage)
@@ -75,7 +75,7 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
         <button disabled={isFormInvalid()} className={styles.button}>
           Log In
         </button>
-        <Link to="/">
+        <Link to="/posts">
           <button>Cancel</button>
         </Link>
       </div>

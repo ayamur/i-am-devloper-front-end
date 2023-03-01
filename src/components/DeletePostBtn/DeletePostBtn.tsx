@@ -21,7 +21,7 @@ const DeletePostBtn: React.FC<DeletePostBtnProps> = ({ userId, postId }) => {
       })
       const delResponse = await response.json()
       if (delResponse.message === 'Goodbye to That Post!') {
-        navigate('/')
+        navigate('/posts')
       }
     } catch (error) {
       console.log(error)
