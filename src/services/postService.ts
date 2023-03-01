@@ -36,7 +36,7 @@ async function createPost(postData: CreatePostForm): Promise<Post> {
 
 async function updatePost(postData: Post): Promise<Post> {
   try {
-    const response = await fetch(`${BASE_URL}/${postData.id}/update`, {
+    const response = await fetch(`${BASE_URL}/${postData.id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${tokenService.getToken()}`,
