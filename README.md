@@ -14,7 +14,9 @@ I am Devloper!!! is an app secially made for anyone involved in computer code!
 ---
 
 ## 😱 Description! 😱
-Share your funny, ironic, and errors that make no sense to others who get it, scroll through the list and have a laugh from a mutual error you've had, or combat imposter syndrome for yourself and other users with varying skill levels and backgrounds!
+* Share your funny and ironic errors and oops code to others who get it! 
+* Scroll through the list and have a laugh and realization you aren't alone in those moments! 
+* Help others combat imposter syndrome by uploading your own unique and silly oops code and errors today!
 
 ---
 
