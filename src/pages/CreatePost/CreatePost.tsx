@@ -35,18 +35,22 @@ const CreatePost: React.FC<CreatePostProps> = (props) => {
   }
 
   return (
-    <form autoComplete='off' onSubmit={handlePostSubmit}>
-      <label>image
-        <input type='text' value={form.image} onChange={handlePostChange} name='image'>
-        </input>
-      </label>
-      <label>caption
-        <input type='text' value={form.caption} onChange={handlePostChange} name='caption'>
-        </input>
-      </label>
-      <button type='submit'>POST TO COMBAT IMPOSTER SYNDROME!</button>
-    </form>
-  )
+    <>
+      <div className='creatediv'>
+        <form autoComplete='off' onSubmit={handlePostSubmit}>
+          <label>image
+            <input type='text' value={form.image} onChange={handlePostChange} name='image'>
+            </input>
+          </label>
+          <label>caption
+            <input type='text' value={form.caption} onChange={handlePostChange} name='caption'>
+            </input>
+          </label>
+          <button type='submit'>POST TO COMBAT IMPOSTER SYNDROME!</button>
+        </form>
+      </div>
+    </>
+  );
 }
 
 
