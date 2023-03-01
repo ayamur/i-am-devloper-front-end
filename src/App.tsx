@@ -70,7 +70,7 @@ function App(): JSX.Element {
     setPosts((prevPosts: Post[]) =>
       prevPosts.map((p: Post) => (postData.id === p.id ? updatedPost : p))
     );
-    navigate('/${:id}/update');
+    navigate('/posts');
   };
 
   const handleDeletePost = async (
@@ -119,8 +119,7 @@ function App(): JSX.Element {
             </ProtectedRoute>
           }
         />
-        <Route path='/${:id}'
-        /* Route path={`/posts/:id/update`} */
+        <Route path={`/posts/:id/update`}
         element={
           <ProtectedRoute user={user}>
             <UpdatePost handleUpdatePost={handleUpdatePost} />
