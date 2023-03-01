@@ -11,12 +11,14 @@ interface LandingProps {
   user: User | null;
 }
 
+
+
 const Landing = (props: LandingProps): JSX.Element => {
   const { user } = props
 
   return (
     <main className={styles.container}>
-      <h1>PlaceHolder <br /> Words</h1>
+      <h1>Welcome Software Engineers, Creators, Coders, Programmers and Tech Language Translators!<br /> WE ARE DEVLOPERS!</h1>
       <img src={logo} alt='facepalm' />
     </main>
   )

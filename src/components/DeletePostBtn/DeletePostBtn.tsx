@@ -29,7 +29,7 @@ const DeletePostBtn: React.FC<DeletePostBtnProps> = ({ userId, postId }) => {
         navigate('/posts')
       }
     } catch (error) {
-      console.log(error)
+      throw (error)
     }
   }
 

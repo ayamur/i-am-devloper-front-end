@@ -47,7 +47,7 @@ function App(): JSX.Element {
         const postData: Post[] = await postService.getAllPosts()
         setPosts(postData)
       } catch (error) {
-        console.log(error)
+        throw (error)
       }
     }
     if (user) fetchPosts()

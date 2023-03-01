@@ -36,7 +36,6 @@ const LoginForm = (props: AuthFormProps): JSX.Element => {
       handleAuthEvt()
       navigate('/posts')
     } catch (err) {
-      console.log(err)
       handleErrMsg(err, updateMessage)
     }
   }

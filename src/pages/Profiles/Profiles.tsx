@@ -18,7 +18,7 @@ const Profiles = (): JSX.Element => {
         const profileData: Profile[] = await profileService.getAllProfiles()
         setProfiles(profileData)
       } catch (error) {
-        console.log(error)
+        throw (error)
       }
     }
     fetchProfiles()

@@ -51,7 +51,6 @@ const SignupForm = (props: AuthFormProps): JSX.Element => {
       handleAuthEvt()
       navigate('/')
     } catch (err) {
-      console.log(err)
       handleErrMsg(err, updateMessage)
       setIsSubmitted(false)
     }
