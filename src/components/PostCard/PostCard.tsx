@@ -1,26 +1,52 @@
+import { Link } from 'react-router-dom'
 
 // assets
 
 // components
+import { DeletePostForm } from '../../types/forms';
 
 //type
-import { Post } from '../../types/models'
+import { Post, User } from '../../types/models'
 
 
 
 interface PostCardProps {
   post: Post;
+  // profile: Profile | null;
+  user: User | null;
+  handleDeletePost: (postData: DeletePostForm) => void;
 }
 
 const PostCard = (props: PostCardProps): JSX.Element => {
-  const { post } = props
+  const { post, user, handleDeletePost } = props
 
   return (
-    <article>
-      <h1>{post.caption}</h1>
-      <img src={post.image} alt={post.caption} />
-    </article>
-  );
+    <>
+      <div className='postcard' key={post.id}>
+        {post.image && (
+          <img src={post.image} alt={post.caption} />
+        )}
+        <h1>Notes from the devloper!: </h1><h1 id='devcap'>{post.caption}</h1>
+        <Link state={{ post }} to={`/posts/${post.id}/update`}>
+          {/* to={`:id`} */}
+          <button>
+            Edit Your Oops!
+          </button>
+        </Link>
+        {post.profileId === user?.id && (
+          <>
+            <button onClick={() => handleDeletePost(post)}>
+              This Never Happened! Delete The Proof!
+            </button>
+            <img src='src/assets/divideline.png' alt='decorative dividing line' id='postdivide' />
+          </>
+        )
+        }
+      </div>
+    </>
+  )
 }
+
+
 
 export default PostCard

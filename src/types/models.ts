@@ -23,13 +23,12 @@ interface User {
 }
 
 interface Post {
-  // profile: { id: number };
-  postId: number;
+  id: number;
+  _id: string;
   profileId: number;
-  name: Profile["name"];
+  postId: number;
   image: string;
   caption: string;
-  id: number;
   createdAt: string;
   updatedAt: string;
 }

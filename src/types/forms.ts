@@ -1,9 +1,6 @@
 /* ---------==== custom forms ====--------- */
 
-// export interface PostManagerFormData {
-//   postId: number;
-//   profileId: number;
-// }
+import { PostMiddlewareFunction } from "mongoose";
 
 /* ---------===== auth forms =====--------- */
 
@@ -30,6 +27,24 @@ export interface PhotoFormData {
 }
 
 export interface CreatePostForm {
+  image: string;
+  caption: string;
+}
+
+export interface UpdatePostForm {
+  image: string;
+  caption: string;
+}
+
+export interface DeletePostForm {
+  image: string;
+  caption: string;
+  postId: number;
+  id: number;
+}
+
+export interface PostDataType {
+  id: number;
   image: string;
   caption: string;
 }

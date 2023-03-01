@@ -1,5 +1,5 @@
 // npm modules 
-import { useState,useEffect } from 'react'
+import { useState, useEffect, SetStateAction, Dispatch } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 // page components
@@ -10,6 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Posts from './pages/Posts/Posts'
 import CreatePost from './pages/CreatePost/CreatePost'
+import UpdatePost from './pages/UpdatePost/UpdatePost'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -25,15 +26,15 @@ import './App.css'
 
 // types
 import { User, Profile, Post } from './types/models'
-// import { PostManagerFormData } from './types/forms'
-import { CreatePostForm } from './types/forms'
+import { CreatePostForm, PostDataType, DeletePostForm } from './types/forms'
 import { PromiseProvider } from 'mongoose'
+import DeletePostBtn from './components/DeletePostBtn/DeletePostBtn'
 
 function App(): JSX.Element {
   const navigate = useNavigate()
 
   const [user, setUser] = useState<User | null>(authService.getUser())
-  const [profiles, setProfiles] = useState<Profile[]>([])
+  const [profile, setProfile] = useState<Profile[]>([])
   const [posts, setPosts] = useState<Post[]>([])
 
   useEffect((): void => {
@@ -58,23 +59,26 @@ function App(): JSX.Element {
     setUser(authService.getUser())
   }
 
-  const handleCreatePost = async (postData: CreatePostForm): Promise<void>=>{
+  const handleCreatePost = async (postData: CreatePostForm): Promise<void> => {
     const makePost = await postService.createPost(postData)
     setPosts([makePost, ...posts])
     navigate('/posts')
   }
 
-  // const handlePost = async (formData: PostManagerFormData): Promise<void> => {
-  //   try {
-  //     const updatedPost = await postService.updatePost(formData)
-  //     setPosts(posts.map((post) => (
-  //       post.id === updatedPost.id ? updatedPost : post
-  //     )))
-  //   } catch (error) {
-  //     console.log(error);
+  const handleUpdatePost = async (postData: Post): Promise<void> => {
+    const updatedPost = await postService.updatePost(postData);
+    setPosts((prevPosts: Post[]) =>
+      prevPosts.map((p: Post) => (postData.id === p.id ? updatedPost : p))
+    );
+    navigate('/posts');
+  };
 
-  //   }
-  // }
+  const handleDeletePost = async (
+    postData: DeletePostForm): Promise<void> => {
+      await postService.deletePost(postData)
+      setPosts(posts.filter(p => p.id !== postData.id))
+      navigate('/posts')
+    }
 
   return (
     <>
@@ -101,18 +105,37 @@ function App(): JSX.Element {
           path="/posts"
           element={
             <ProtectedRoute user={user}>
-              <Posts posts={posts}/>
+              <Posts posts={posts} user={user} 
+              // profile={profile} 
+              handleDeletePost={handleDeletePost} />
             </ProtectedRoute>
           }
         />
         <Route
-        path="/postpost"
-        element={
-          <ProtectedRoute user={user}>
-            <CreatePost handleCreatePost={handleCreatePost} />
-          </ProtectedRoute>
-        }
+          path="/postpost"
+          element={
+            <ProtectedRoute user={user}>
+              <CreatePost handleCreatePost={handleCreatePost} />
+            </ProtectedRoute>
+          }
         />
+        <Route
+          path={`/posts/:id/update`}
+          //{:id}
+          element={
+            <ProtectedRoute user={user}>
+              <UpdatePost handleUpdatePost={handleUpdatePost} />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route
+          path="/delete"
+          element={
+            <ProtectedRoute user={user}>
+              <DeletePostBtn handleDeletePost={handleDeletePost} />
+            </ProtectedRoute>
+          }
+        /> */}
         <Route
           path="/change-password"
           element={
@@ -124,6 +147,6 @@ function App(): JSX.Element {
       </Routes>
     </>
   )
-}
+};
 
 export default App
