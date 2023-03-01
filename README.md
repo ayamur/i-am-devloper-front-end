@@ -1,6 +1,6 @@
 # 🫠 I AM DEVLOPER!!! 🫠
 
-<!-- ![Screenshot](https:.png) -->
+![Screenshot!](https://i.imgur.com/nhPvs2M.png)
 
 I am Devloper!!! is an app secially made for anyone involved in computer code! 
 
