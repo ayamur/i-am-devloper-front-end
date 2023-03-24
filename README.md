@@ -2,7 +2,7 @@
 
 ![Screenshot!](https://i.imgur.com/nhPvs2M.png)
 
-I am Devloper!!! is an app secially made for anyone involved in computer code! 
+I am Devloper!!! is an app specially made for anyone involved in computer code! 
 
 ---
 
